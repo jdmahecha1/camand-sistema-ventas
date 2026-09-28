@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Listado de Clientes</h3>
+    <div class="card-tools">
+      <button class="btn btn-warning btn-sm" (click)="nuevo()">
+        <i class="fas fa-plus"></i> Insertar Cliente
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="mostrarForm">
+    <form (ngSubmit)="guardar()" #f="ngForm" class="row">
+      <div class="form-group col-md-3">
+        <label>Nombre</label>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label>Apellido</label>
+        <input type="text" class="form-control" name="apellido" [(ngModel)]="apellido" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label>Teléfono</label>
+        <input type="text" class="form-control" name="telefono" [(ngModel)]="telefono">
+      </div>
+      <div class="form-group col-md-3">
+        <label>Ciudad</label>
+        <select class="form-control" name="fo_ciudad" [(ngModel)]="fo_ciudad" required>
+          <option value="" disabled>Seleccione...</option>
+          <option *ngFor="let c of ciudades" [value]="c.id_ciudad">{{ c.nombre }}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-12">
+        <label>Dirección</label>
+        <input type="text" class="form-control" name="direccion" [(ngModel)]="direccion">
+      </div>
+      <div class="col-md-12 mt-2">
+        <button type="submit" class="btn btn-primary mr-2">{{ modoEditar ? 'Actualizar' : 'Guardar' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+    <hr>
+  </div>
+
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
+          <th>Ciudad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of clientes">
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.apellido }}</td>
+          <td>{{ item.telefono }}</td>
+          <td>{{ item.direccion }}</td>
+          <td>{{ item.ciudad }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="seleccionar(item)" title="Editar">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item)" title="Eliminar">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="clientes.length === 0">
+          <td colspan="6" class="text-center">No hay clientes registrados</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

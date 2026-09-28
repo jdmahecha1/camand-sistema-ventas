@@ -7,6 +7,10 @@ frontend_ventas/out-tsc
 npm-debug.log
 yarn-error.log
 
+# Librerias de terceros (AdminLTE, jQuery, Bootstrap, etc.) copiadas como assets estaticos.
+# No es codigo propio del proyecto: se documenta como se obtiene en el README.
+frontend_ventas/public/assets/
+
 # IDEs y editores
 .idea/
 .vscode/*

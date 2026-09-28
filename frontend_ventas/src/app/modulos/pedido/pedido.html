@@ -1,0 +1,122 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Pedidos</h3>
+    <div class="card-tools">
+      <button class="btn btn-warning btn-sm" (click)="nuevaVenta()">
+        <i class="fas fa-plus"></i> Insertar Pedido
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="mostrarForm">
+    <div class="row">
+      <div class="col-md-7">
+        <h5>Productos</h5>
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Stock</th>
+              <th>Precio</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of productos">
+              <td>{{ p.codigo }}</td>
+              <td>{{ p.nombre }}</td>
+              <td>{{ p.stock }}</td>
+              <td>{{ p.precio_venta | currency }}</td>
+              <td class="d-flex">
+                <input type="number" class="form-control form-control-sm mr-1" style="width: 60px" min="1" [(ngModel)]="p.cantidadSeleccionada">
+                <button class="btn btn-success btn-sm" (click)="agregar(p)" title="Agregar">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-5">
+        <h5>Cliente</h5>
+        <select class="form-control mb-3" name="fo_cliente" [(ngModel)]="fo_cliente" required>
+          <option value="" disabled>Seleccione un cliente...</option>
+          <option *ngFor="let c of clientes" [value]="c.id_cliente">{{ c.nombre }} {{ c.apellido }}</option>
+        </select>
+
+        <h5>Carrito</h5>
+        <table class="table table-sm table-bordered">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cant.</th>
+              <th>Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of carrito">
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.cantidad }}</td>
+              <td>{{ item.subtotal | currency }}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" (click)="quitar(item)" title="Quitar">
+                  <i class="fas fa-times"></i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="carrito.length === 0">
+              <td colspan="4" class="text-center">El carrito está vacío</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="2">Total</th>
+              <th colspan="2">{{ total | currency }}</th>
+            </tr>
+          </tfoot>
+        </table>
+
+        <button class="btn btn-primary mr-2" (click)="guardarVenta()">Guardar Pedido</button>
+        <button class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Vendedor</th>
+          <th>Productos</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of ventas">
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.cliente }}</td>
+          <td>{{ item.vendedor }}</td>
+          <td>
+            <span *ngFor="let d of item.productosDetalle">{{ d.nombre }} (x{{ d.cantidad }})&nbsp;</span>
+          </td>
+          <td>{{ item.total | currency }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="eliminarVenta(item)" title="Eliminar">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="ventas.length === 0">
+          <td colspan="6" class="text-center">No hay pedidos registrados</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

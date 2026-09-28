@@ -1,0 +1,83 @@
+<h1 class="titulo-pagina">Tu carrito</h1>
+
+<div class="pedido-exito" *ngIf="pedidoConfirmado">
+  <i class="fas fa-check-circle"></i>
+  <div>
+    <strong>¡Pedido confirmado!</strong>
+    <div>Te llevamos a "Mis pedidos"...</div>
+  </div>
+</div>
+
+<div class="carrito-vacio" *ngIf="items.length === 0 && !pedidoConfirmado">
+  <i class="fas fa-shopping-bag"></i>
+  <p>Tu carrito está vacío.</p>
+  <a routerLink="/tienda" class="btn btn-primary">Ver catálogo</a>
+</div>
+
+<div class="row" *ngIf="items.length > 0 && !pedidoConfirmado">
+  <div class="col-lg-7">
+    <div class="carrito-card">
+      <div class="carrito-item" *ngFor="let item of items">
+        <div class="carrito-item-img">
+          <img *ngIf="item.imagen" [src]="item.imagen" [alt]="item.nombre">
+          <i *ngIf="!item.imagen" class="fas fa-image"></i>
+        </div>
+        <div class="carrito-item-info">
+          <div class="carrito-item-nombre">{{ item.nombre }}</div>
+          <div class="carrito-item-precio">{{ item.precio | currency }} c/u</div>
+        </div>
+        <input
+          type="number"
+          class="carrito-item-cantidad"
+          min="1"
+          [ngModel]="item.cantidad"
+          (ngModelChange)="cambiarCantidad(item, $event)">
+        <div class="carrito-item-subtotal">{{ item.precio * item.cantidad | currency }}</div>
+        <button class="carrito-item-quitar" (click)="quitar(item)" title="Quitar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="carrito-card p-4">
+      <div *ngIf="necesitaPerfil">
+        <h5>Datos de entrega</h5>
+        <p class="text-muted" style="font-size: 0.85rem;">Es tu primer pedido, cuéntanos dónde te lo enviamos.</p>
+
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="apellido">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" class="form-control" [(ngModel)]="telefono">
+        </div>
+        <div class="form-group">
+          <label>Dirección</label>
+          <input type="text" class="form-control" [(ngModel)]="direccion">
+        </div>
+        <div class="form-group">
+          <label>Ciudad</label>
+          <select class="form-control" [(ngModel)]="fo_ciudad">
+            <option value="" disabled>Seleccione...</option>
+            <option *ngFor="let c of ciudades" [value]="c.id_ciudad">{{ c.nombre }}</option>
+          </select>
+        </div>
+        <hr>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Total</span>
+        <span class="carrito-total">{{ total | currency }}</span>
+      </div>
+
+      <div class="alert alert-danger py-2" *ngIf="error">{{ error }}</div>
+
+      <button class="btn btn-primary btn-block" [disabled]="enviando" (click)="confirmarPedido()">
+        {{ enviando ? 'Enviando...' : 'Confirmar pedido' }}
+      </button>
+    </div>
+  </div>
+</div>

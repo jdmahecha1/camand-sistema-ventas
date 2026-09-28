@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Listado de Categorías</h3>
+    <div class="card-tools">
+      <button class="btn btn-warning btn-sm" (click)="nuevo()">
+        <i class="fas fa-plus"></i> Insertar Categoría
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="mostrarForm">
+    <form (ngSubmit)="guardar()" #f="ngForm" class="form-inline mb-3">
+      <div class="form-group mr-2">
+        <label class="mr-2">Nombre</label>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required placeholder="Nombre de la categoría">
+      </div>
+      <button type="submit" class="btn btn-primary mr-2">{{ modoEditar ? 'Actualizar' : 'Guardar' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+    </form>
+  </div>
+
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of categorias">
+          <td>{{ item.id_categoria }}</td>
+          <td>{{ item.nombre }}</td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="seleccionar(item)" title="Editar">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="eliminar(item)" title="Eliminar">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="categorias.length === 0">
+          <td colspan="3" class="text-center">No hay categorías registradas</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

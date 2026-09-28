@@ -1,0 +1,339 @@
+/* ============================================================
+   CAMAND · Sistema de diseño global
+   Reskin moderno sobre AdminLTE (paleta azul, tarjetas suaves,
+   tipografía Poppins) manteniendo la estructura de AdminLTE.
+   ============================================================ */
+
+:root {
+  --camand-primary: #2563eb;
+  --camand-primary-dark: #1d4ed8;
+  --camand-primary-light: #dbeafe;
+  --camand-accent: #4f46e5;
+  --camand-dark: #0f172a;
+  --camand-dark-soft: #16213e;
+  --camand-bg: #f4f6fb;
+  --camand-text: #1e293b;
+  --camand-muted: #64748b;
+  --camand-success: #16a34a;
+  --camand-danger: #e11d48;
+  --camand-warning: #f59e0b;
+  --camand-radius: 14px;
+  --camand-radius-sm: 8px;
+  --camand-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+  --camand-shadow-hover: 0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+html, body {
+  font-family: 'Poppins', 'Source Sans Pro', -apple-system, sans-serif;
+  background: var(--camand-bg);
+  color: var(--camand-text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ---------- Layout base ---------- */
+.content-wrapper {
+  background: var(--camand-bg) !important;
+}
+
+.content-header h1 {
+  font-weight: 700;
+  color: var(--camand-dark);
+  letter-spacing: -0.02em;
+}
+
+.breadcrumb {
+  background: transparent;
+}
+
+/* ---------- Navbar ---------- */
+.main-header.navbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid #eef1f8;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.main-header .nav-link {
+  color: var(--camand-text) !important;
+  font-weight: 500;
+}
+
+/* ---------- Sidebar ---------- */
+.main-sidebar {
+  background: linear-gradient(180deg, var(--camand-dark) 0%, var(--camand-dark-soft) 100%) !important;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.main-sidebar .brand-link {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-sidebar .brand-text {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #60a5fa, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.main-sidebar .user-panel .info a {
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 0.85rem;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link {
+  color: rgba(255, 255, 255, 0.65);
+  border-radius: var(--camand-radius-sm);
+  margin: 2px 8px;
+  width: auto;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active {
+  background: linear-gradient(90deg, var(--camand-primary), var(--camand-accent));
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.nav-sidebar .nav-icon {
+  width: 1.4rem;
+  text-align: center;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  border: none;
+  border-radius: var(--camand-radius);
+  box-shadow: var(--camand-shadow);
+  transition: box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: var(--camand-shadow-hover);
+}
+
+.card-header {
+  background: #ffffff;
+  border-bottom: 1px solid #eef1f8;
+  padding: 1.1rem 1.4rem;
+}
+
+.card-title {
+  font-weight: 700;
+  color: var(--camand-dark);
+  font-size: 1.1rem;
+}
+
+.card-body {
+  padding: 1.4rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  border-radius: var(--camand-radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--camand-primary), var(--camand-accent));
+  border: none;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  border: none;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  border: none;
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.3);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #e11d48, #f43f5e);
+  border: none;
+  box-shadow: 0 6px 16px rgba(225, 29, 72, 0.25);
+}
+
+.btn-info {
+  background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  border: none;
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.25);
+}
+
+.btn-secondary {
+  background: #eef1f8;
+  border: none;
+  color: var(--camand-text);
+}
+
+/* ---------- Forms ---------- */
+.form-control {
+  border-radius: var(--camand-radius-sm);
+  border: 1px solid #e2e8f0;
+  padding: 0.55rem 0.85rem;
+}
+
+.form-control:focus {
+  border-color: var(--camand-primary);
+  box-shadow: 0 0 0 3px var(--camand-primary-light);
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--camand-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- Tables ---------- */
+.table thead th {
+  border-top: none;
+  border-bottom: 2px solid #eef1f8;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--camand-muted);
+  font-weight: 700;
+}
+
+.table td {
+  vertical-align: middle;
+  border-color: #f1f4f9;
+}
+
+.table-hover tbody tr:hover {
+  background-color: var(--camand-primary-light);
+}
+
+/* ---------- Dashboard stat boxes ---------- */
+.small-box {
+  border-radius: var(--camand-radius);
+  box-shadow: var(--camand-shadow);
+  overflow: hidden;
+}
+
+.small-box > .inner h3 {
+  font-weight: 800;
+}
+
+.small-box .icon {
+  opacity: 0.35;
+}
+
+/* ---------- Footer ---------- */
+.main-footer {
+  background: #ffffff;
+  border-top: 1px solid #eef1f8;
+  color: var(--camand-muted);
+}
+
+/* ---------- Product cards (catálogo) ---------- */
+.producto-card {
+  border-radius: var(--camand-radius);
+  box-shadow: var(--camand-shadow);
+  background: #ffffff;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--camand-shadow-hover);
+}
+
+.producto-card .producto-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #eef2ff, #f4f6fb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.producto-card .producto-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.producto-card .producto-img-wrap .placeholder-icon {
+  font-size: 2.6rem;
+  color: #c7d2fe;
+}
+
+.producto-card .producto-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.producto-card .producto-nombre {
+  font-weight: 700;
+  color: var(--camand-dark);
+  font-size: 0.98rem;
+  line-height: 1.25;
+}
+
+.producto-card .producto-precio {
+  font-weight: 800;
+  color: var(--camand-primary);
+  font-size: 1.15rem;
+}
+
+.badge-categoria {
+  background: var(--camand-primary-light);
+  color: var(--camand-primary-dark);
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.28em 0.75em;
+  font-size: 0.72rem;
+  width: fit-content;
+}
+
+.badge-stock-bajo {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.producto-card .producto-acciones {
+  margin-top: auto;
+  display: flex;
+  gap: 0.4rem;
+}

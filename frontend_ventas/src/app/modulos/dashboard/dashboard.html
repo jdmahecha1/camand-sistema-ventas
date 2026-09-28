@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{ totalPedidos }}</h3>
+        <p>Pedidos registrados</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <a routerLink="/pedido" class="small-box-footer">Ver pedidos <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{ totalVentas | currency }}</h3>
+        <p>Total vendido</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-sack-dollar"></i>
+      </div>
+      <a routerLink="/pedido" class="small-box-footer">Ver detalle <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{ totalProductos }}</h3>
+        <p>Productos activos</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-boxes"></i>
+      </div>
+      <a routerLink="/producto" class="small-box-footer">Ver productos <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>{{ totalClientes }}</h3>
+        <p>Clientes registrados</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <a routerLink="/cliente" class="small-box-footer">Ver clientes <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Últimos pedidos</h3>
+  </div>
+  <div class="card-body table-responsive p-0">
+    <table class="table table-hover text-nowrap">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Vendedor</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of ultimosPedidos">
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.cliente }}</td>
+          <td>{{ item.vendedor }}</td>
+          <td>{{ item.total | currency }}</td>
+        </tr>
+        <tr *ngIf="ultimosPedidos.length === 0">
+          <td colspan="4" class="text-center">Todavía no hay pedidos registrados</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

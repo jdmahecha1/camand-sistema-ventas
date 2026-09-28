@@ -1,0 +1,45 @@
+<div class="catalogo-header">
+  <h1>Nuestros productos</h1>
+  <p>Elige lo que necesitas y agrégalo a tu carrito.</p>
+</div>
+
+<div class="catalogo-filtros">
+  <button
+    *ngFor="let c of categorias"
+    class="filtro-pill"
+    [class.activo]="categoriaActiva === c"
+    (click)="filtrar(c)">
+    {{ c }}
+  </button>
+</div>
+
+<div class="toast-agregado" *ngIf="mensajeAgregado">
+  <i class="fas fa-check-circle"></i> {{ mensajeAgregado }}
+</div>
+
+<div class="row">
+  <div class="col-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of productosFiltrados">
+    <div class="producto-card">
+      <div class="producto-img-wrap">
+        <img *ngIf="item.imagen" [src]="item.imagen" [alt]="item.nombre">
+        <i *ngIf="!item.imagen" class="fas fa-image placeholder-icon"></i>
+      </div>
+      <div class="producto-body">
+        <span class="badge-categoria">{{ item.categoria }}</span>
+        <div class="producto-nombre">{{ item.nombre }}</div>
+        <span class="producto-precio">{{ item.precio_venta | currency }}</span>
+
+        <div class="agregar-carrito">
+          <input type="number" class="cantidad-input" min="1" [(ngModel)]="item.cantidadSeleccionada">
+          <button class="btn btn-primary btn-sm flex-fill" (click)="agregarAlCarrito(item)">
+            <i class="fas fa-cart-plus"></i> Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12" *ngIf="productosFiltrados.length === 0">
+    <p class="text-center text-muted py-5">No hay productos en esta categoría todavía.</p>
+  </div>
+</div>

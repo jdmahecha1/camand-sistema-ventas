@@ -1,0 +1,65 @@
+.catalogo-header h1 {
+  font-weight: 800;
+  color: #1e293b;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+}
+
+.catalogo-header p {
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.catalogo-filtros {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.6rem;
+}
+
+.filtro-pill {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filtro-pill:hover {
+  border-color: #93c5fd;
+  color: #2563eb;
+}
+
+.filtro-pill.activo {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.toast-agregado {
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.agregar-carrito {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.cantidad-input {
+  width: 56px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  text-align: center;
+  padding: 0.3rem;
+}

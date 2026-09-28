@@ -1,0 +1,27 @@
+<div class="tienda-wrapper">
+  <nav class="tienda-navbar">
+    <a routerLink="/tienda" class="tienda-brand">CAMAND</a>
+
+    <div class="tienda-links">
+      <a routerLink="/tienda" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Catálogo</a>
+      <a routerLink="/mis-pedidos" routerLinkActive="active">Mis pedidos</a>
+    </div>
+
+    <div class="tienda-acciones">
+      <a routerLink="/carrito" class="tienda-carrito-btn" title="Carrito">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="tienda-carrito-badge" *ngIf="itemsCarrito > 0">{{ itemsCarrito }}</span>
+      </a>
+      <span class="tienda-usuario d-none d-md-inline">{{ usuario?.nombre }}</span>
+      <a href="#" class="tienda-logout" (click)="cerrarSesion(); $event.preventDefault()">Salir</a>
+    </div>
+  </nav>
+
+  <main class="tienda-contenido">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="tienda-footer">
+    <span>CAMAND · Pedidos en línea</span>
+  </footer>
+</div>

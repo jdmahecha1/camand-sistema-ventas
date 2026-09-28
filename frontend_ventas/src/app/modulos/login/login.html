@@ -1,0 +1,63 @@
+<div class="camand-login">
+
+  <div class="panel-marca">
+    <div class="marca-topbar">
+      <span class="marca-logo">CAMAND</span>
+    </div>
+
+    <div class="marca-centro">
+      <svg class="ilustracion" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="160" r="130" fill="#12336b"/>
+        <circle cx="252" cy="82" r="10" fill="#fbbf24"/>
+        <circle cx="70" cy="230" r="7" fill="#60a5fa"/>
+        <circle cx="240" cy="240" r="6" fill="#60a5fa"/>
+
+        <path d="M110 118 L130 84 H190 L210 118 Z" fill="#1d4ed8" stroke="#eff6ff" stroke-width="4" stroke-linejoin="round"/>
+        <rect x="96" y="118" width="128" height="118" rx="14" fill="#eff6ff"/>
+        <rect x="96" y="118" width="128" height="34" rx="14" fill="#2563eb"/>
+
+        <circle cx="160" cy="118" r="20" fill="none" stroke="#1d4ed8" stroke-width="5"/>
+
+        <rect x="118" y="170" width="52" height="10" rx="5" fill="#bfdbfe"/>
+        <rect x="118" y="190" width="84" height="10" rx="5" fill="#bfdbfe"/>
+        <rect x="118" y="210" width="66" height="10" rx="5" fill="#bfdbfe"/>
+
+        <circle cx="228" cy="196" r="28" fill="#fbbf24"/>
+        <path d="M215 196 L224 205 L242 185" stroke="#7c2d12" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+
+      <h1>Pide fácil,<br>recibe rápido.</h1>
+      <p>Gestiona tu negocio o haz tu pedido, todo en un mismo lugar.</p>
+    </div>
+
+    <div class="marca-pie">© 2026 CAMAND</div>
+  </div>
+
+  <div class="panel-form">
+    <div class="form-contenedor">
+      <h2>Bienvenido de nuevo</h2>
+      <p class="subtitulo">Ingresa tus datos para continuar</p>
+
+      <form (ngSubmit)="ingresar()" #f="ngForm">
+        <div class="campo">
+          <label>Correo electrónico</label>
+          <input type="email" name="correo" [(ngModel)]="correo" placeholder="tucorreo@ejemplo.com" required>
+        </div>
+
+        <div class="campo">
+          <label>Contraseña</label>
+          <input type="password" name="clave" [(ngModel)]="clave" placeholder="••••••••" required>
+        </div>
+
+        <div class="mensaje-error" *ngIf="error">
+          Correo o contraseña incorrectos.
+        </div>
+
+        <button type="submit" class="boton-ingresar" [disabled]="cargando">
+          {{ cargando ? 'Ingresando...' : 'Iniciar sesión' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>

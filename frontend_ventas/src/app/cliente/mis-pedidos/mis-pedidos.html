@@ -1,0 +1,23 @@
+<h1 class="titulo-pagina">Mis pedidos</h1>
+
+<div class="pedidos-vacio" *ngIf="!cargando && pedidos.length === 0">
+  <i class="fas fa-receipt"></i>
+  <p>Todavía no has hecho ningún pedido.</p>
+  <a routerLink="/tienda" class="btn btn-primary">Ir al catálogo</a>
+</div>
+
+<div class="pedido-card" *ngFor="let p of pedidos">
+  <div class="pedido-card-header">
+    <div>
+      <strong>Pedido del {{ p.fecha }}</strong>
+      <div class="text-muted" style="font-size: 0.82rem;">Atendido por {{ p.vendedor }}</div>
+    </div>
+    <span class="pedido-total">{{ p.total | currency }}</span>
+  </div>
+  <div class="pedido-card-body">
+    <div class="pedido-linea" *ngFor="let d of p.productosDetalle">
+      <span>{{ d.nombre }}</span>
+      <span class="text-muted">x{{ d.cantidad }}</span>
+    </div>
+  </div>
+</div>

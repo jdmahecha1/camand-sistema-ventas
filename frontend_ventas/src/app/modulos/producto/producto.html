@@ -1,0 +1,94 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h3 class="card-title">Catálogo de Productos</h3>
+    <div class="card-tools">
+      <button class="btn btn-warning btn-sm" (click)="nuevo()">
+        <i class="fas fa-plus"></i> Insertar Producto
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body" *ngIf="mostrarForm">
+    <form (ngSubmit)="guardar()" #f="ngForm" class="row">
+      <div class="form-group col-md-3">
+        <label>Código</label>
+        <input type="text" class="form-control" name="codigo" [(ngModel)]="codigo" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Nombre</label>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="nombre" required>
+      </div>
+      <div class="form-group col-md-5">
+        <label>Categoría</label>
+        <select class="form-control" name="fo_categoria" [(ngModel)]="fo_categoria" required>
+          <option value="" disabled>Seleccione...</option>
+          <option *ngFor="let c of categorias" [value]="c.id_categoria">{{ c.nombre }}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-12">
+        <label>URL de la imagen <span class="text-muted text-lowercase">(opcional por ahora, se puede agregar después)</span></label>
+        <input type="text" class="form-control" name="imagen" [(ngModel)]="imagen" placeholder="https://...">
+      </div>
+      <div class="form-group col-md-4">
+        <label>Precio Compra</label>
+        <input type="number" class="form-control" name="precio_compra" [(ngModel)]="precio_compra" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Precio Venta</label>
+        <input type="number" class="form-control" name="precio_venta" [(ngModel)]="precio_venta" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Stock</label>
+        <input type="number" class="form-control" name="stock" [(ngModel)]="stock" required>
+      </div>
+      <div class="form-group col-md-12">
+        <label>Proveedor</label>
+        <select class="form-control" name="fo_proveedor" [(ngModel)]="fo_proveedor" required>
+          <option value="" disabled>Seleccione...</option>
+          <option *ngFor="let p of proveedores" [value]="p.id_proveedor">{{ p.nombre }}</option>
+        </select>
+      </div>
+      <div class="col-md-12 mt-2">
+        <button type="submit" class="btn btn-primary mr-2">{{ modoEditar ? 'Actualizar' : 'Guardar' }}</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+    <hr>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6 col-md-4 col-lg-3 mb-4" *ngFor="let item of productos">
+        <div class="producto-card">
+          <div class="producto-img-wrap">
+            <img *ngIf="item.imagen" [src]="item.imagen" [alt]="item.nombre">
+            <i *ngIf="!item.imagen" class="fas fa-image placeholder-icon"></i>
+          </div>
+          <div class="producto-body">
+            <span class="badge-categoria">{{ item.categoria }}</span>
+            <div class="producto-nombre">{{ item.nombre }}</div>
+            <div class="text-muted" style="font-size: 0.78rem;">Código {{ item.codigo }} · {{ item.proovedor }}</div>
+            <div class="d-flex justify-content-between align-items-center mt-1">
+              <span class="producto-precio">{{ item.precio_venta | currency }}</span>
+              <span class="badge" [class.badge-stock-bajo]="stockBajo(item)" [class.badge-secondary]="!stockBajo(item)">
+                Stock: {{ item.stock }}
+              </span>
+            </div>
+            <div class="producto-acciones">
+              <button class="btn btn-info btn-sm flex-fill" (click)="seleccionar(item)" title="Editar">
+                <i class="fas fa-edit"></i> Editar
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="eliminar(item)" title="Eliminar">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12" *ngIf="productos.length === 0">
+        <p class="text-center text-muted py-4">No hay productos registrados</p>
+      </div>
+    </div>
+  </div>
+</div>
