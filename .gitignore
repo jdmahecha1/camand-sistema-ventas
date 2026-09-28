@@ -1,0 +1,21 @@
+# Angular / Node (frontend_ventas)
+frontend_ventas/node_modules
+frontend_ventas/dist
+frontend_ventas/.angular/cache
+frontend_ventas/tmp
+frontend_ventas/out-tsc
+npm-debug.log
+yarn-error.log
+
+# IDEs y editores
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log
